@@ -1,0 +1,21 @@
+@font-face{
+		font-family: dotty;
+		src:url("./dotty.ttf");
+
+	}
+*{
+	font-family: dotty;
+	background: black;
+	color: white;
+	font-size: 50px;
+	text-align: center;
+}
+#higher{
+	opacity: 0;
+}
+#opt{
+	opacity: 0;
+}
+#true_victory{
+	opacity: 0;
+}

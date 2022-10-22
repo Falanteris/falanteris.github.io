@@ -1,0 +1,39 @@
+@font-face{
+		font-family: dotty;
+		src:url("./dotty.ttf");
+
+	}
+*{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-family: dotty;
+	font-size: 50px;
+	color: white;
+}
+body{
+	background: black;
+	
+}
+ul{
+	list-style-type: none;
+
+}
+li{
+	display: inline;
+
+}
+.diff{
+	padding: 5%;
+	margin: 5%;
+	background: transparent;
+	border: none;
+}
+.diff:hover{
+	cursor: crosshair;
+	background: white;
+	color: black;
+}
+.imgrow{
+
+}

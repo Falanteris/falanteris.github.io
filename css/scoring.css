@@ -1,0 +1,80 @@
+*{
+	margin:0;
+	padding: 0;
+}
+	@font-face{
+		font-family: dotty;
+		src:url("./dotty.ttf");
+	}
+	*{
+		font-family: dotty;
+		color: white;
+		background: black;
+		font-size: 50px;
+	}
+.panel{
+	border:2px solid black;
+	
+	text-align: center;
+}
+.scorename{
+	font-size: 30px;
+	font-weight: bold;
+	padding: 1%;
+	padding-bottom: 5%;
+	
+}
+.container{
+
+	width: 25%;
+	margin-left: 35%;
+	margin-top: 20%;
+	margin-bottom: 20%;
+	text-align: center;
+	
+
+}
+.ROW{
+	list-style-type: none;
+	display: inline;
+}
+.keypad{
+
+}
+.ROW>li{
+	float:left;
+}
+.ROW>li>label{
+	padding: 30px;
+}
+.arrow{
+	font-size: 30px;
+}
+#subbut{
+	border: none;
+	
+}
+@keyframes blink_blink{
+	from{
+		background: transparent;
+		color: white;
+	}
+	to{
+		background: white;
+		color: black;
+	}
+}
+
+.animate_namepart{
+	animation-name: blink_blink;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+
+}
+.namepart{
+	padding:5px;
+	font-weight: bold;
+	font-size: 30px;
+	margin-right: 20px;
+	position: none;
+}

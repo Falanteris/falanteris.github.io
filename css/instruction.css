@@ -1,0 +1,29 @@
+
+
+	body{
+		background: black;
+	}
+		@font-face{
+					font-family: dotty;
+		src:url("./dotty.ttf");
+		}
+		*{
+			margin:0;
+			padding: 0;
+
+		text-align: center;
+		font-family: dotty;
+		color: white;
+		font-size: 30px;
+		}
+		
+	.main{
+		border-radius: 20px;
+		padding: 20%;
+	}
+	label{
+			margin-bottom: 10%;
+	}
+	h1{
+		margin-bottom:  10%;
+	}

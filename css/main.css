@@ -1,0 +1,30 @@
+	@font-face{
+		font-family: dotty;
+		src:url("./dotty.ttf");
+	}
+
+	body{
+		background: black;
+	}
+*{
+		text-align: center;
+		font-family: dotty;
+		color: white;
+		font-size: 30px;
+	}
+
+	.top-title{
+		padding-bottom: 20%;
+	}
+	.navigation{
+		list-style-type: none;
+		position:relative;
+		font-weight: bold;
+		font-style: italic;
+	}
+	li{
+		font-size: 30px;	
+	}
+	.highlited{
+		border:2px solid red;
+	}

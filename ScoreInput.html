@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Input Your Score</title>
+	<script src="js/scoring.js"></script>
+	<script src="js/validate_source.js"></script>
+	<script src="js/JS_CLASS_MOD/strings.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/scoring.css">
+</head>
+<body>
+	
+	<div class="panel">
+		<div class="container">
+			<form method="get" action="next-level.html">
+				
+				<label type="text" name="getScore">
+					<label class="scorename">Your Score : <label class="score" id="score"></label>
+					<input type="hidden" name="score" id="score_input"></label>
+				</label>
+				<br>
+				<label type="text" name="getName" id="user">
+					<label class="namepart animate_namepart" id="1">A</label><label class="namepart" id="2">A</label ><label class="namepart" id="3">A</label>
+				</label>
+				<input type="hidden" id="username" name="username">
+				<input id="subbut" type="submit" value="Submit">
+			</form>
+
+				<label class="arrow" id="Left">
+					&larr;
+				</label>
+			<label class="arrow" id="Right">
+					&rarr;
+				</label>
+
+		</div>
+		
+	</div>
+</body>
+</html>

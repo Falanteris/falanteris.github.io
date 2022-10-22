@@ -1,0 +1,189 @@
+	@font-face{
+		font-family: dotty;
+		src:url("./dotty.ttf");
+
+	}
+	.fatiguebar{
+	    position:fixed;
+	    bottom:1px;
+	    left:45%;
+	}
+	#medium{
+		display: none;
+	}
+	#hard{
+		display: none;
+	}
+	*{
+		font-family: dotty;
+		color: white;
+		
+	}
+	.mouse_pic{
+		max-width: 100px;
+		max-height: 100px;
+		border-radius: 50px;
+	}	
+	@keyframes animate_mouse{
+			from{
+
+			}
+			to{
+
+			}
+		}
+		.animated{
+
+		}
+		.mouse{
+			
+			top:20px;
+			border-radius:40px;
+			background: black;
+			width:5%;
+		}
+		
+		.sample{
+			margin: 0;
+			padding: 0;
+			max-width: 50px;
+			max-height: 50px;
+			padding:1%;
+			border-radius: 40px;
+
+		}
+		body{
+			overflow:visible;
+			background: black;
+		}
+		.hidden_mouses{
+			position:fixed;
+			bottom: 10px;
+			text-align:center;
+			font-size:30px;
+			font-weight:bold;
+		}
+		.right{
+			right:10px;
+		}
+		.above{
+			top:1px;
+			right:1px;
+		}
+		.box_hole{
+			width:5%;
+			color:green;
+			border:2px solid black;
+            position:absolute;
+           
+		}
+		.victory_scr{
+			opacity: 0;
+			position: fixed;
+			top:5%;
+			left:40%;
+			background: black;
+			color:white;
+			padding: 5%;
+			border-radius: 20px;
+		}
+		@keyframes animate_appear{
+			from{
+				opacity: 0;
+			}
+			to{
+				opacity: 1;
+			};
+		}
+		.appear{
+			animation-name:animate_appear;
+			animation-duration: 4s; 
+			opacity: 1;
+
+		}
+		.highlighted{
+			font-size: 30px;
+			color:orange;
+		}
+		.warning{
+			color: red;
+		}
+		#time{
+			position: fixed;
+			left:50%;
+			font-size: 30px;
+			font-weight: bold;
+
+		}
+		@keyframes animate_app_dis{
+			from{
+				opacity: 1
+			}
+			to{
+				opacity: 0
+			}
+		}
+		.diss{
+			animation-name: animate_app_dis;
+			animation-duration: 2s;
+			opacity: 0;
+		}
+		.center{
+			animation-name: animate_app_dis;
+			animation-duration: 2s;
+			position: fixed;
+			left:50%;
+			font-size: 30px;
+			padding: 20px;
+			border-radius: 20px;
+			color: white;
+			font-weight: bold;
+			background: red;
+			opacity: 0;
+
+		}
+		#under{
+			font-size:30px;
+			font-weight:bold;
+
+		}
+		#right {
+				font-size:30px;
+			font-weight:bold;
+
+		}
+		.menu{
+			list-style-type: none;
+			position:fixed;	
+			opacity: 0.2;
+			left:1px;
+			
+		}
+		a{
+			text-decoration: none;
+			color: black;
+		}
+		a:hover{
+			font-size: 20px;
+
+		}
+			.menu:hover{
+				opacity: 1;
+			}
+			.quit{
+				color: white;
+			}
+		.menu>li{
+			
+			display: inline;
+			padding:10px;
+		}
+		@media only screen and (orientation:portrait) and (max-width:500px){
+			.menu{
+			list-style-type: none;
+			position:fixed;	
+			opacity: 0.2;
+			bottom: 1px;
+			}
+		}	}
+	}
