@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <script src="js/jquery-3.3.1.min.js"></script>
+
+	<meta charset="utf-8" >
+	<title>Rampant Robbers</title>
+	<script src="js/game.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/design.css">
+	
+</head>
+<body onload="document.getElementById('game_track').play();" onunload="localStorage.removeItem('start_time');" id="body" onmousemove="detectOverflow();" onscroll="detectOverflow();">
+
+		<ul class="menu"> 
+		<li> <a href="/">Quit</a> </li>
+		<li> <a href="ScoreInput.html">Submit Score</a> </li>
+	</ul>
+		
+	
+	<label class="center">
+		GO
+	</label>
+	<label id="time">
+		
+	</label>
+	<audio id="game_track"  loop="true" hidden>
+		<source src="birdie.ogg" type="audio/ogg">
+	</audio>
+	<audio id="game_win">
+		<source src="Final_Fantasy_1_-_Battle_Victory-211894817.ogg" type="audio/ogg">
+	</audio>
+	<audio id="blast_sfx" hidden>
+		
+		<source src="8-BIt-SFX_Explosion_01.ogg" type="audio/ogg">
+	</audio>
+	<div class="victory_scr" style="text-align: center;">
+		<h1>GAME ENDED!!</h1>
+		<br>
+		<h1>Score<label  style="margin-left: 5%;">:</label><label id="score" style="margin-left: 5%;"></label></h1>
+		<h1>Rating<label style="margin-left: 5%;">:</label>
+		<label style="margin-left: 5%;" id="rating"></label>
+		</h1>
+		<h1>
+		Difficulty
+		<label style="margin-left: 5%;">:</label>
+		<label style="margin-left: 5%;" id="diff"></label>	
+		</h1>
+		<h1><a class="quit" href="ScoreInput.html">Input Your Highscore</a></h1>
+		<h1><a class="quit" href="index.html">Quit</a></h1>
+	</div>
+	<div class="victory_scr" style="text-align: center;">
+		<h1>GAME OVER!!</h1>
+		<br>
+		<h1>You Lost The Game Due To Timeout</h1>
+		<h1><a class="quit" href="index.html">Quit</a></h1>
+		
+	</div>
+
+	<div onmouseenter="moveObject(this.id)" id='sample' class="sample" >
+	 <img src="NewMouse.png" class="mouse_pic"> 
+</div>
+
+	<div onmouseenter="moveObject(this.id)" id='sample1'  class="sample">
+	 <img src="NewMouse.png" class="mouse_pic">
+</div>
+	<div onmouseenter="moveObject(this.id)" id='sample2'  class="sample">
+	 <img src="NewMouse.png" class="mouse_pic">
+</div>
+	<div onmouseenter="moveObject(this.id)" id='sample23'  class="sample">
+	 <img src="NewMouse.png" class="mouse_pic">
+</div>
+	<div onmouseenter="moveObject(this.id)" id='sample4'  class="sample">
+
+	 <img src="NewMouse.png" class="mouse_pic">
+</div>
+<span class="extra" id="medium"> 
+	<div onmouseenter="moveObject(this.id)" id='sample5'  class="sample">
+	 <img src="NewMouse.png" class="mouse_pic"> 
+</div>
+</span >
+<span class="extra" id="hard">
+
+	<div onmouseenter="moveObject(this.id)" id='sample6'  class="sample">
+	 <img src="NewMouse.png" class="mouse_pic"> 
+</div>
+
+	<div onmouseenter="moveObject(this.id)" id='sample7'  class="sample">
+	 <img src="NewMouse.png" class="mouse_pic"> 
+</div>
+
+</span>
+<div class="hidden_mouses under" id="under">
+ <label id="darr">&darr;</label>
+</div>
+
+<div class="hidden_mouses right" id="right">
+<label id="rarr">&rarr;</label>
+</div>
+<div class="hidden_mouses above" id="above">
+ <label id="uarr">&uarr;</label>
+</div>
+
+<span class="fatiguebar">
+    <h1>Fatigue:</h1>
+    <svg id="fbar" width="50" height="30">
+        
+  <rect id="dpfbar"  width="500" height="30" style="fill:white;stroke-width:10;stroke:rgb(0,0,0)" />
+</svg>
+</span>
+</body>
+</html>

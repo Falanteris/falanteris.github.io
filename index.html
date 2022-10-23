@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Main Menu</title>
+	<script src="js/JS_CLASS_MOD/strings.js"></script>
+	<script src="js/JS_CLASS_MOD/HTMLObject.js"></script>
+<script type="text/javascript">
+	window.onkeyup = function(e){
+		console.log(e);
+		var input = String.fromCharCode(e.keyCode);
+		var select = document.getElementById("selected").value;
+		var nav = 0;
+		
+		if(input == "&"){
+			var nav = -1;
+		}
+		else if(input == "("){
+			var nav = 1;
+			
+		}
+		var newinp = parseInt(select) + nav;
+		console.log(newinp);
+		if(newinp<0 || newinp>4){
+			return;
+		}
+		else{
+			var list = document.getElementsByTagName('li');
+			document.getElementById('selected').value = newinp;
+			for (var i = list.length - 1; i >= 0; i--) {
+				if(i != newinp && list[i].classList.contains('highlited')){
+					list[i].classList.remove('highlited');
+				}
+				if(i == newinp){
+					list[i].classList.add('highlited');
+
+				}
+			}
+		}
+
+
+	}
+</script>	
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+<div class="top-title">
+	<h1>Cat And Mouse</h1>
+</div>
+
+<div class="top-title">
+	<ul class="navigation">
+		<input type="hidden" id="selected" value="0">
+		<li class='highlited' onclick="window.location = 'difficulty.html' ">Play</li>
+		<li onclick="window.location = 'instruction.html' ">Instructions</li>
+		<li>Settings</li>
+
+	</ul>
+</div>
+</body>
+</html>
