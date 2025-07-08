@@ -1,61 +1,730 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Main Menu</title>
-	<script src="js/JS_CLASS_MOD/strings.js"></script>
-	<script src="js/JS_CLASS_MOD/HTMLObject.js"></script>
-<script type="text/javascript">
-	window.onkeyup = function(e){
-		console.log(e);
-		var input = String.fromCharCode(e.keyCode);
-		var select = document.getElementById("selected").value;
-		var nav = 0;
-		
-		if(input == "&"){
-			var nav = -1;
-		}
-		else if(input == "("){
-			var nav = 1;
-			
-		}
-		var newinp = parseInt(select) + nav;
-		console.log(newinp);
-		if(newinp<0 || newinp>4){
-			return;
-		}
-		else{
-			var list = document.getElementsByTagName('li');
-			document.getElementById('selected').value = newinp;
-			for (var i = list.length - 1; i >= 0; i--) {
-				if(i != newinp && list[i].classList.contains('highlited')){
-					list[i].classList.remove('highlited');
-				}
-				if(i == newinp){
-					list[i].classList.add('highlited');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-				}
-			}
-		}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-	}
-</script>	
-<link rel="stylesheet" type="text/css" href="css/main.css">
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .specializations {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .spec-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .case-study {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .case-study:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .case-study.expanded {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .case-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .case-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+
+        .case-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .case-summary {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: #e8f4f8;
+            color: #2c3e50;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .case-details {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .case-details.show {
+            display: block;
+        }
+
+        .methodology {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .methodology h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .methodology ol {
+            margin-left: 20px;
+        }
+
+        .methodology li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .skills-matrix {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .skills-matrix h3 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .skill-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px 0;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .skill-level {
+            display: flex;
+            gap: 3px;
+        }
+
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .skill-dot.active {
+            background: #667eea;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .expand-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .specializations {
+                justify-content: center;
+            }
+            
+            .case-studies {
+                grid-template-columns: 1fr;
+            }
+            
+            .skill-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="top-title">
-	<h1>Cat And Mouse</h1>
-</div>
+    <div class="container">
+        <div class="header">
+            <h1>Rayhan Rabiul Tsani</h1>
+            <p>CCDA | Blue Team Enthusiast | Lifelong Learner</p>
+            <div class="specializations">
+                <div class="spec-badge">DFIR Specialist</div>
+                <div class="spec-badge">SOC Analyst</div>
+                <div class="spec-badge">Security Engineer</div>
+                <div class="spec-badge">Penetration Tester</div>
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="https://www.linkedin.com/in/rayhan-rabiul-tsani-056b03142/" target="_blank" 
+                   style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; 
+                          background: #0077b5; color: white; padding: 10px 20px; border-radius: 25px; 
+                          font-weight: bold; transition: all 0.3s ease;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    Connect on LinkedIn
+                </a>
+            </div>
+        </div>
 
-<div class="top-title">
-	<ul class="navigation">
-		<input type="hidden" id="selected" value="0">
-		<li class='highlited' onclick="window.location = 'difficulty.html' ">Play</li>
-		<li onclick="window.location = 'instruction.html' ">Instructions</li>
-		<li>Settings</li>
+        <div class="case-studies" id="caseStudies">
+            <div class="case-study" onclick="toggleCase('case1')">
+                <div class="case-header">
+                    <div class="case-icon">🔍</div>
+                    <div class="case-title">Data Breach Investigation</div>
+                </div>
+                <div class="case-summary">
+                    Comprehensive incident response for a simulated financial institution data breach involving customer PII exposure through web application vulnerabilities.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python Scripting</span>
+                    <span class="tech-tag">OSForensics</span>
+                    <span class="tech-tag">Autopsy</span>
+                    <span class="tech-tag">Log Aggregation</span>
+                    <span class="tech-tag">Burp Suite</span>
+                </div>
+                <button class="expand-btn">View Details</button>
+                
+                <div class="case-details" id="case1">
+                    <div class="methodology">
+                        <h4>Investigation Methodology:</h4>
+                        <ol>
+                            <li><strong>Initial Assessment:</strong> Identified potential data exfiltration through web application logs showing unusual SQL query patterns</li>
+                            <li><strong>Evidence Collection:</strong> Utilized disk imaging techniques and preserved system state using OSForensics for forensic analysis</li>
+                            <li><strong>Log Analysis:</strong> Developed Python scripts to parse and correlate logs from multiple sources (web servers, databases, network devices)</li>
+                            <li><strong>Vulnerability Assessment:</strong> Performed security assessment using Burp Suite to identify SQL injection vectors and authentication bypasses</li>
+                            <li><strong>Timeline Construction:</strong> Created comprehensive incident timeline using Autopsy to correlate file system changes with log events</li>
+                            <li><strong>Impact Assessment:</strong> Determined scope of compromised customer records and mapped attack progression</li>
+                        </ol>
+                    </div>
+                    <p><strong>Key Findings:</strong> Identified attack vector through unpatched web application, traced lateral movement through network logs, and provided actionable recommendations for remediation and prevention.</p>
+                </div>
+            </div>
 
-	</ul>
-</div>
+            <div class="case-study" onclick="toggleCase('case2')">
+                <div class="case-header">
+                    <div class="case-icon">🛡️</div>
+                    <div class="case-title">Security Hardening Implementation</div>
+                </div>
+                <div class="case-summary">
+                    Deployed comprehensive security hardening across financial infrastructure using CIS Benchmarks and automated compliance monitoring.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Ansible Lockdown</span>
+                    <span class="tech-tag">CIS Benchmarks</span>
+                    <span class="tech-tag">Python Automation</span>
+                    <span class="tech-tag">Linux Hardening</span>
+                </div>
+                <button class="expand-btn">View Details</button>
+                
+                <div class="case-details" id="case2">
+                    <div class="methodology">
+                        <h4>Implementation Approach:</h4>
+                        <ol>
+                            <li><strong>Baseline Assessment:</strong> Conducted security posture evaluation against CIS Benchmarks for Linux and Windows systems</li>
+                            <li><strong>Automation Development:</strong> Created custom Ansible playbooks using Ansible Lockdown for consistent hardening deployment</li>
+                            <li><strong>Compliance Monitoring:</strong> Developed Python scripts for continuous compliance checking and reporting</li>
+                            <li><strong>Staged Rollout:</strong> Implemented hardening measures in phases across development, staging, and production environments</li>
+                            <li><strong>Validation Testing:</strong> Performed security validation to ensure hardening measures didn't impact business operations</li>
+                            <li><strong>Documentation:</strong> Created comprehensive runbooks and established ongoing maintenance procedures</li>
+                        </ol>
+                    </div>
+                    <p><strong>Results:</strong> Achieved 95% CIS Benchmark compliance across infrastructure, reduced attack surface by 70%, and established automated compliance monitoring with real-time alerting.</p>
+                </div>
+            </div>
+
+            <div class="case-study" onclick="toggleCase('case3')">
+                <div class="case-header">
+                    <div class="case-icon">📊</div>
+                    <div class="case-title">SOC Monitoring & Detection</div>
+                </div>
+                <div class="case-summary">
+                    Implemented comprehensive security monitoring solution for financial services production environment using Wazuh SIEM stack.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Wazuh SIEM</span>
+                    <span class="tech-tag">Custom Rules</span>
+                    <span class="tech-tag">Threat Detection</span>
+                    <span class="tech-tag">Incident Response</span>
+                </div>
+                <button class="expand-btn">View Details</button>
+                
+                <div class="case-details" id="case3">
+                    <div class="methodology">
+                        <h4>SOC Implementation Strategy:</h4>
+                        <ol>
+                            <li><strong>Environment Assessment:</strong> Analyzed production infrastructure to identify critical assets and logging sources</li>
+                            <li><strong>Wazuh Deployment:</strong> Configured distributed Wazuh architecture with manager, indexer, and dashboard components</li>
+                            <li><strong>Custom Detection Rules:</strong> Developed industry-specific detection rules for financial services threats and compliance requirements</li>
+                            <li><strong>Alerting Framework:</strong> Established tiered alerting system with automated response playbooks for common incidents</li>
+                            <li><strong>Threat Intelligence Integration:</strong> Incorporated threat feeds and IOCs specific to financial sector threats</li>
+                            <li><strong>Continuous Monitoring:</strong> Implemented 24/7 monitoring with escalation procedures and incident tracking</li>
+                        </ol>
+                    </div>
+                    <p><strong>Impact:</strong> Reduced mean time to detection by 60%, automated response to 80% of common security events, and maintained 99.9% uptime for security monitoring services.</p>
+                </div>
+            </div>
+
+            <div class="case-study" onclick="toggleCase('case4')">
+                <div class="case-header">
+                    <div class="case-icon">🔓</div>
+                    <div class="case-title">Penetration Testing Assessment</div>
+                </div>
+                <div class="case-summary">
+                    Conducted comprehensive security assessment for financial institution web applications and internal network infrastructure.
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">Burp Suite Professional</span>
+                    <span class="tech-tag">Web App Testing</span>
+                    <span class="tech-tag">Network Scanning</span>
+                    <span class="tech-tag">Vulnerability Assessment</span>
+                </div>
+                <button class="expand-btn">View Details</button>
+                
+                <div class="case-details" id="case4">
+                    <div class="methodology">
+                        <h4>Assessment Methodology:</h4>
+                        <ol>
+                            <li><strong>Reconnaissance:</strong> Performed information gathering and attack surface mapping of target applications</li>
+                            <li><strong>Vulnerability Scanning:</strong> Conducted automated scanning using Burp Suite Professional and custom testing scripts</li>
+                            <li><strong>Manual Testing:</strong> Performed manual security testing focusing on business logic flaws and complex attack chains</li>
+                            <li><strong>Exploitation:</strong> Demonstrated impact of discovered vulnerabilities through controlled proof-of-concept exploits</li>
+                            <li><strong>Privilege Escalation:</strong> Tested for lateral movement opportunities and privilege escalation vectors</li>
+                            <li><strong>Reporting:</strong> Delivered comprehensive findings with risk ratings and remediation recommendations</li>
+                        </ol>
+                    </div>
+                    <p><strong>Findings:</strong> Identified 15 high-risk vulnerabilities including SQL injection, authentication bypasses, and privilege escalation paths. Provided detailed remediation guidance and assisted with vulnerability validation post-fix.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="skills-matrix">
+            <h3>Technical Proficiency Matrix</h3>
+            <div class="skill-categories">
+                <div class="skill-category">
+                    <h4>🔍 Digital Forensics & Investigation</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">OSForensics</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Autopsy</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Log Analysis</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>🛡️ Security Operations</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Wazuh SIEM</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Incident Response</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Threat Detection</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>🔓 Penetration Testing</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Burp Suite</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Web App Testing</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Network Assessment</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>⚙️ Automation & Development</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Python Scripting</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Ansible Lockdown</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">SQL Databases</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>🧪 Quality Assurance</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Selenium Automation</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Katalon Studio</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Test Automation</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>🌐 Additional Skills</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Technical Communication</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Compliance & Reporting</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Cross-functional Collaboration</span>
+                        <div class="skill-level">
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                            <div class="skill-dot active"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>All case studies represent sanitized scenarios demonstrating methodology and technical capabilities while respecting confidentiality requirements.</p>
+            <p style="margin-top: 10px; color: #666;">Ready to discuss how these skills can benefit your organization's security posture.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleCase(caseId) {
+            const caseDetails = document.getElementById(caseId);
+            const caseStudy = caseDetails.closest('.case-study');
+            const allCaseStudies = document.querySelectorAll('.case-study');
+            const allCaseDetails = document.querySelectorAll('.case-details');
+            
+            // Close all other expanded cases
+            allCaseDetails.forEach(detail => {
+                if (detail.id !== caseId) {
+                    detail.classList.remove('show');
+                }
+            });
+            
+            allCaseStudies.forEach(study => {
+                if (study !== caseStudy) {
+                    study.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle current case
+            if (caseDetails.classList.contains('show')) {
+                caseDetails.classList.remove('show');
+                caseStudy.classList.remove('expanded');
+            } else {
+                caseDetails.classList.add('show');
+                caseStudy.classList.add('expanded');
+            }
+        }
+
+        // Add smooth scrolling to expanded cases
+        document.addEventListener('DOMContentLoaded', function() {
+            const caseStudies = document.querySelectorAll('.case-study');
+            
+            caseStudies.forEach(study => {
+                study.addEventListener('click', function() {
+                    setTimeout(() => {
+                        if (this.classList.contains('expanded')) {
+                            this.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 100);
+                });
+            });
+        });
+
+        // Add animation to skill dots on scroll
+        function animateSkillDots() {
+            const skillItems = document.querySelectorAll('.skill-item');
+            
+            skillItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    const dots = item.querySelectorAll('.skill-dot.active');
+                    dots.forEach((dot, index) => {
+                        setTimeout(() => {
+                            dot.style.animation = 'pulse 0.5s ease-in-out';
+                        }, index * 100);
+                    });
+                }
+            });
+        }
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        window.addEventListener('scroll', animateSkillDots);
+        window.addEventListener('load', animateSkillDots);
+    </script>
 </body>
 </html>
